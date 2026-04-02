@@ -1,0 +1,224 @@
+[gd_scene format=4 uid="uid://cjanwm3sy2x37"]
+
+[ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
+[ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
+[ext_resource type="Script" uid="uid://i1pbov8nbab6" path="res://Scenes/Prefabs/coin.gd" id="3_3cagf"]
+[ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_rrh80"]
+[ext_resource type="Script" uid="uid://b15onwothd60c" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
+[ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_wqbaa"]
+[ext_resource type="Script" uid="uid://c64h67w43igxs" path="res://Scripts/GameUI.gd" id="6_66mfc"]
+[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
+texture = ExtResource("5_wqbaa")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 16, -32, 16)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 0, -32, 0)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.665527, 6.8301315, 7.376549, -0.8196182, 18.304764, 17.211937, 14.479889, 32, -18.85117, 25.954506)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_ywwrl"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_gs0qk")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
+texture = ExtResource("5_wqbaa")
+texture_region_size = Vector2i(64, 64)
+0:5/next_alternative_id = 3
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 32, 32, -32, 32)
+0:5/1 = 1
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:5/next_alternative_id = 4
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-22.129635, -18.851173, 2.458847, -32, 21.036812, -20.490406, 19.943993, 18.851166, -21.036812, 22.129631)
+1:5/1 = 1
+4:1/0 = 0
+4:0/next_alternative_id = 2
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:0/1 = 1
+5:0/next_alternative_id = 4
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -20.490406, 32, -24.86169, 32, 32, -32, 32)
+5:0/1 = 1
+
+[sub_resource type="TileSet" id="TileSet_2fcbi"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rndpx")
+
+[node name="Level_01" type="Node2D" unique_id=1426675490]
+
+[node name="LevelFinishDoor" parent="." unique_id=751432675 instance=ExtResource("1_oqkjg")]
+z_index = 1
+position = Vector2(5049, 399)
+
+[node name="Player" parent="." unique_id=1344662561 instance=ExtResource("2_pay8t")]
+z_index = 1
+position = Vector2(150, 318)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=725886010]
+position = Vector2(16, 36)
+limit_left = 0
+limit_bottom = 705
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.4
+drag_right_margin = 0.4
+drag_bottom_margin = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Coins" type="Node2D" parent="." unique_id=2054887417 groups=["Traps"]]
+position = Vector2(1, 0)
+script = ExtResource("3_3cagf")
+
+[node name="Coin" parent="Coins" unique_id=587973015 instance=ExtResource("3_rrh80")]
+position = Vector2(576, 406)
+
+[node name="Coin2" parent="Coins" unique_id=1501768758 instance=ExtResource("3_rrh80")]
+position = Vector2(712, 353)
+
+[node name="Coin3" parent="Coins" unique_id=1191945306 instance=ExtResource("3_rrh80")]
+position = Vector2(844, 408)
+
+[node name="Coin4" parent="Coins" unique_id=256692764 instance=ExtResource("3_rrh80")]
+position = Vector2(4574, 430)
+
+[node name="Coin5" parent="Coins" unique_id=1141669196 instance=ExtResource("3_rrh80")]
+position = Vector2(4703, 341)
+
+[node name="Coin6" parent="Coins" unique_id=1925046305 instance=ExtResource("3_rrh80")]
+position = Vector2(4449, 341)
+
+[node name="Coin7" parent="Coins" unique_id=306815902 instance=ExtResource("3_rrh80")]
+position = Vector2(2080, 518)
+
+[node name="Coin8" parent="Coins" unique_id=1139771119 instance=ExtResource("3_rrh80")]
+position = Vector2(2081, 301)
+
+[node name="Coin9" parent="Coins" unique_id=2071977730 instance=ExtResource("3_rrh80")]
+position = Vector2(2213, 425)
+
+[node name="Coin10" parent="Coins" unique_id=971273309 instance=ExtResource("3_rrh80")]
+position = Vector2(3294, 489)
+
+[node name="Coin11" parent="Coins" unique_id=1806711006 instance=ExtResource("3_rrh80")]
+position = Vector2(2910, 493)
+
+[node name="Coin12" parent="Coins" unique_id=1297110735 instance=ExtResource("3_rrh80")]
+position = Vector2(3102, 557)
+
+[node name="Coin13" parent="Coins" unique_id=2069929880 instance=ExtResource("3_rrh80")]
+position = Vector2(1947, 416)
+
+[node name="Level" type="Node2D" parent="." unique_id=767371760]
+
+[node name="Ground" type="TileMap" parent="Level" unique_id=495516835 groups=["Ground"]]
+tile_set = SubResource("TileSet_ywwrl")
+format = 2
+layer_0/tile_data = PackedInt32Array(393231, 131072, 5, 393234, 131072, 5, 524352, 196608, 0, 589888, 196608, 0, 655424, 196608, 0)
+
+[node name="Layer1" type="TileMapLayer" parent="Level/Ground" unique_id=1886457061]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAANAAcAAAAAAAAAAAAOAAcAAAAAAAAAAAAPAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAAAAAAAAAASAAcAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAVAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAMAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAJAAcAAAAAAAAAAAAWAAcAAAAAAAIAAAAXAAcAAAAAAAIAAAAYAAcAAAAAAAIAAAAZAAcAAAAAAAIAAAAaAAcAAAAAAAIAAAAbAAcAAAAAAAIAAAAgAAUAAAAAAAIAAAAlAAcAAAAAAAIAAAAmAAcAAAAAAAIAAAAnAAcAAAAAAAIAAAAoAAcAAAAAAAIAAAApAAcAAAAAAAIAAAAqAAcAAAAAAAIAAAArAAcAAAADAAAAAAAzAAgAAAAAAAIAAAAxAAkAAAAEAAAAAAAyAAkAAAAEAAAAAAAzAAkAAAAEAAAAAAA0AAkAAAAEAAAAAAA1AAkAAAAEAAAAAAAvAAkAAAAEAAAAAAAuAAkAAAAEAAAAAAAtAAkAAAAEAAAAAAAsAAkAAAAEAAAAAAAwAAkAAAAAAAIAAAAtAAgAAAAAAAIAAAA1AAsAAAAAAAAAAAA0AAsAAAAAAAAAAAAzAAsAAAAAAAAAAAAyAAsAAAAAAAAAAAAxAAsAAAAAAAAAAAAwAAsAAAAAAAAAAAAvAAsAAAAAAAAAAAAuAAsAAAAAAAAAAAAtAAsAAAAAAAAAAAAsAAsAAAAAAAAAAAArAAgAAAADAAAAAAArAAkAAAADAAAAAAArAAoAAAADAAAAAAArAAsAAAADAAAAAAA2AAkAAAADAAAAAAA2AAoAAAADAAAAAAA2AAsAAAADAAAAAAAcAAgAAAADAAAAAAAcAAcAAAADAAAAAAAkAAgAAAADAAAAAAAkAAcAAAADAAAAAAAHAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAEAAgAAAADAAAAAAADAAgAAAADAAAAAAACAAgAAAADAAAAAAABAAgAAAADAAAAAAAAAAgAAAADAAAAAAD//wgAAAADAAAAAAD//wcAAAADAAAAAAD//wYAAAADAAAAAAD//wUAAAADAAAAAAD//wQAAAADAAAAAAD//wMAAAADAAAAAAD//wIAAAADAAAAAAD//wEAAAADAAAAAAD//wAAAAADAAAAAAD//wkAAAADAAAAAAD//woAAAADAAAAAAAAAAoAAAADAAAAAAAAAAkAAAADAAAAAAABAAkAAAADAAAAAAABAAoAAAADAAAAAAACAAoAAAADAAAAAAACAAkAAAADAAAAAAADAAkAAAADAAAAAAADAAoAAAADAAAAAAAEAAoAAAADAAAAAAAEAAkAAAADAAAAAAAFAAoAAAADAAAAAAAGAAoAAAADAAAAAAAHAAoAAAADAAAAAAAIAAoAAAADAAAAAAAJAAoAAAADAAAAAAAKAAoAAAADAAAAAAALAAoAAAADAAAAAAAMAAoAAAADAAAAAAANAAgAAAADAAAAAAANAAkAAAADAAAAAAANAAoAAAADAAAAAAAOAAoAAAADAAAAAAAOAAkAAAADAAAAAAAOAAgAAAADAAAAAAAPAAgAAAADAAAAAAAPAAkAAAADAAAAAAAPAAoAAAADAAAAAAAQAAoAAAADAAAAAAAQAAkAAAADAAAAAAAQAAgAAAADAAAAAAARAAgAAAADAAAAAAARAAkAAAADAAAAAAARAAoAAAADAAAAAAASAAoAAAADAAAAAAASAAkAAAADAAAAAAASAAgAAAADAAAAAAATAAgAAAADAAAAAAATAAkAAAADAAAAAAATAAoAAAADAAAAAAAUAAoAAAADAAAAAAAUAAkAAAADAAAAAAAUAAgAAAADAAAAAAAVAAgAAAADAAAAAAAVAAkAAAADAAAAAAAVAAoAAAADAAAAAAA3AAcAAAAAAAIAAAA4AAcAAAAAAAIAAAA5AAcAAAAAAAIAAAA6AAcAAAAAAAIAAAA7AAcAAAAAAAIAAAA8AAcAAAAAAAIAAAA9AAcAAAAAAAIAAAA+AAcAAAAAAAIAAABBAAcAAAACAAQAAABDAAcAAAACAAQAAABHAAcAAAACAAQAAABLAAcAAAACAAQAAABOAAcAAAAAAAIAAABPAAcAAAAAAAIAAABFAAYAAAACAAQAAABJAAYAAAACAAQAAAA2AAgAAAADAAAAAAA2AAcAAAADAAAAAAAcAAsAAAADAAAAAAAcAAwAAAADAAAAAAAdAAwAAAADAAAAAAAeAAwAAAADAAAAAAAfAAwAAAADAAAAAAAgAAwAAAADAAAAAAAhAAwAAAADAAAAAAAiAAwAAAADAAAAAAAjAAwAAAADAAAAAAAkAAsAAAADAAAAAAAkAAwAAAADAAAAAAAcAAkAAAADAAAAAAAcAAoAAAADAAAAAAAkAAkAAAADAAAAAAAkAAoAAAADAAAAAAAFAAgAAAADAAAAAAAFAAkAAAADAAAAAAAGAAkAAAADAAAAAAAHAAkAAAADAAAAAAAIAAkAAAADAAAAAAAJAAkAAAADAAAAAAAJAAgAAAADAAAAAAAIAAgAAAADAAAAAAAHAAgAAAADAAAAAAAGAAgAAAADAAAAAAAMAAgAAAADAAAAAAAMAAkAAAADAAAAAABAAAcAAAAAAAAAAAA/AAcAAAAAAAIAAABAAAsAAAADAAAAAABBAAsAAAADAAAAAABCAAsAAAADAAAAAABDAAsAAAADAAAAAABEAAsAAAADAAAAAABFAAsAAAADAAAAAABGAAsAAAADAAAAAABHAAsAAAADAAAAAABIAAsAAAADAAAAAABJAAsAAAADAAAAAABKAAsAAAADAAAAAABLAAsAAAADAAAAAABMAAsAAAADAAAAAABNAAsAAAADAAAAAABNAAgAAAADAAAAAABNAAkAAAADAAAAAABNAAoAAAADAAAAAABNAAcAAAAAAAAAAAAeAAcAAAAAAAIAAAAiAAcAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_ywwrl")
+
+[node name="Traps" type="TileMap" parent="Level" unique_id=622456843 groups=["Traps"]]
+tile_set = SubResource("TileSet_2fcbi")
+format = 2
+layer_0/tile_data = PackedInt32Array(655413, 0, 5, 655412, 0, 5, 655411, 0, 5, 655410, 0, 5, 655409, 0, 5, 655407, 0, 5, 655406, 0, 5, 655405, 0, 5, 655404, 0, 5, 589834, 0, 5, 589835, 0, 5, 393239, 0, 5, 393238, 0, 5, 393253, 0, 5, 393256, 0, 5, 393259, 0, 5, 720925, 0, 5, 720926, 0, 5, 720927, 0, 5, 720928, 0, 5, 720929, 0, 5, 720930, 0, 5, 720931, 0, 5, 458762, 327680, 0, 458763, 327680, 0, 458781, 65536, 5, 458787, 65536, 5, 655427, 65536, 5, 655428, 65536, 5, 655429, 65536, 5, 655430, 65536, 5, 655431, 65536, 5, 655432, 65536, 5, 655433, 65536, 5, 655434, 65536, 5, 655435, 65536, 5, 655436, 65536, 5, 655426, 65536, 5, 655425, 65536, 5)
+
+[node name="SpawnPoint" type="Marker2D" parent="Level" unique_id=1152872070]
+unique_name_in_owner = true
+position = Vector2(174, 383)
+
+[node name="TutorialText" type="Node2D" parent="." unique_id=176157861]
+
+[node name="Movement" type="Label" parent="TutorialText" unique_id=802183180]
+offset_left = 264.0
+offset_top = 336.0
+offset_right = 542.0
+offset_bottom = 420.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_font_sizes/font_size = 32
+text = "A & D To Move
+Spacebar To Jump"
+
+[node name="SetNextScene" type="Label" parent="TutorialText" unique_id=52736507]
+offset_left = 808.0
+offset_top = 256.0
+offset_right = 1239.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_font_sizes/font_size = 32
+text = "Level Finish
+Set the next scene
+from \"LevelFinishDoor\" Area"
+
+[node name="GameManager" type="Node2D" parent="." unique_id=1444085348]
+script = ExtResource("4_vgfkr")
+
+[node name="UserInterface" type="CanvasLayer" parent="." unique_id=67287217]
+
+[node name="GameUI" type="Control" parent="UserInterface" unique_id=1973951752]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 124.0
+offset_top = 22.0
+offset_right = 124.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_66mfc")
+
+[node name="Score" type="Control" parent="UserInterface/GameUI" unique_id=1700060436]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score" unique_id=1767503069]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 116.0
+texture = ExtResource("7_j7jun")
+stretch_mode = 4
+
+[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score" unique_id=1808430968]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 104.0
+offset_top = 42.0
+offset_right = 148.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_font_sizes/font_size = 32
+text = "x 3"

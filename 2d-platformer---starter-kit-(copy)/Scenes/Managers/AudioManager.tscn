@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bssjjygu83iwl"]
+
+[ext_resource type="Script" uid="uid://dnk4immlqqbu3" path="res://Scripts/AudioManager.gd" id="1_hp1cr"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_hp1cr")
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+volume_db = 1.5
+
+[node name="CoinPickup" type="AudioStreamPlayer" parent="."]
+volume_db = 1.5
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="RespawnSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="LevelCompleteSfx" type="AudioStreamPlayer" parent="."]
+volume_db = -2.0
+pitch_scale = 0.5
