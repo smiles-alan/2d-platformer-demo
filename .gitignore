@@ -1,8 +1,19 @@
 # Godot-specific ignores
 .godot/
 .import/
+import/
 export_presets.cfg
+*.translation
+*.tres
+*.tscn~
+*.import
 
-# OS-specific ignores
+# Editor-specific
+*.godot
+
+# OS generated files
 .DS_Store
 Thumbs.db
+
+# Imported assets (can be regenerated)
+.godot/import/
